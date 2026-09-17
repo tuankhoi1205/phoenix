@@ -11,6 +11,8 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
 |---|---|---|---|---|---|
 | [P-001](#p-001) | Segmentation: xe đứng dày đặc, sát nhau thì tô thế nào | Guideline chưa nói tới | §1, §3, §4 | ↗️ Hỏi BTC | — |
 | [P-002](#p-002) | Segmentation: vùng không xác định được class (vd. vùng đen) | Guideline chưa nói tới | §1 RULE 03, §6 | ↗️ Hỏi BTC | — |
+| [P-003](#p-003) | Có cần giữ lỗ bên trong mask của vật thể không| Guideline chưa nói tới | — | 🔴 Mở | — |
+| [P-002](#p-002) | Khó xác định biên giữa road và sidewalk| Guideline mơ hồ| — | 🔴 Mở | — |
 
 **Loại**
 
@@ -62,8 +64,40 @@ mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn l�
 - **Xử lý tạm trong lúc chờ:** Đã tạo Issue để hỏi, chờ trả lời.
 - **Kết quả:** ↗️ Chờ trả lời Issue
 
----
+## P-003
 
+**Có cần giữ lỗ bên trong mask của vật thể không**
+
+- **Loại:** Guideline chưa nói tới
+- **Mục guideline:** —
+- **Người phát hiện:** @tuankhoi1205 · 17/09/2026
+- **Link CVAT:** (bổ sung frame khi gặp)
+- **Mô tả:** Một số vật thể có vùng nền nhìn xuyên qua, chẳng hạn khoảng trống giữa
+  bánh xe, tay người hoặc các bộ phận của vật thể. Chưa rõ mask phải giữ vùng trống
+  này hay tô kín toàn bộ.
+- **Các cách hiểu:**
+  1. Tô kín toàn bộ vùng bên trong đường bao ngoài.
+  2. Khoét lỗ tại nơi nền thật sự nhìn thấy xuyên qua.
+- **Xử lý tạm trong lúc chờ:** Giữ lỗ nếu vùng nền nhìn thấy rõ; không khoét nếu ảnh
+  quá mờ hoặc không xác định được biên.
+- **Kết quả:** 🔴 Mở
+
+## P-004
+
+**Khó xác định biên giữa road và sidewalk**
+
+- **Loại:** Guideline mơ hồ
+- **Mục guideline:** —
+- **Người phát hiện:** @tuankhoi1205 · 17/09/2026
+- **Link CVAT:** (bổ sung frame khi gặp)
+- **Mô tả:** Ở một số ảnh, mép đường bị mờ, có bóng đổ hoặc không có vạch phân cách
+  rõ nên khó xác định pixel thuộc `road` hay `sidewalk`.
+- **Các cách hiểu:**
+  1. Theo đường mép vật lý của vỉa hè.
+  2. Theo sự thay đổi màu sắc nhìn thấy trong ảnh.
+- **Xử lý tạm trong lúc chờ:** Ưu tiên đường mép vật lý nếu nhìn thấy; nếu không rõ
+  thì bám theo biên màu ổn định nhất và ghi lại frame để review.
+- **Kết quả:** 🔴 Mở
 ## Mẫu để copy
 
 ```markdown
